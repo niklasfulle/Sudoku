@@ -1,19 +1,17 @@
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 var field;
+var fieldChecks;
 var selected;
-const gameString = "9n7nnnnnnbnnnn4n8n2bnnnnnnn9bnn56nnn7nb4n683nn5nb7nn9nn4n1b12n385n46b5nnn9nn83b3nnn71n2n";
+const gameString = "9n7nnnnnnbnnnn4n8n2bnnnnnnn9nbnn56nnn7nb4n683nn5nb7nn9nn4n1b12n385n46b5nnn9nn83b3nnn71n2n";
 
 function init() {
     field = new Array(9);
+    fieldChecks = new Array(9);
     for (var i = 0; i < field.length; i++) {
         field[i] = new Array(9);
+        fieldChecks[i] = new Array(9);
     }
 
-    for (var i = 0; i < 9; i++) {
-        for (var j = 0; j < 9; j++) {
-            field[i][j] = "";
-        }
-    }
     initGame();
     dispalyField();
 }
@@ -23,9 +21,11 @@ function initGame() {
     for (var i = 0; i < gameString.length; i++) {
         if (gameString[i] != "n" && gameString[i] != "b") {
             field[y][x] = gameString[i];
+            fieldChecks[y][x] = "x";
         } else {
             if (gameString[i] == "n") {
                 field[y][x] = " ";
+                fieldChecks[y][x] = " ";
             }
         }
         if (gameString[i] == "b") {
@@ -75,7 +75,9 @@ function selectNumber(number) {
 
 function selectField(i, j) {
     if (selected != undefined) {
-        field[i][j] = selected;
+        if (fieldChecks[i][j] != "x") {
+            field[i][j] = selected;
+        }
     }
     dispalyField();
 }
