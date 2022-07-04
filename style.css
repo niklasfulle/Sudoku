@@ -47,6 +47,24 @@ body {
     background-color: var(--color-body);
 }
 
+#timer {
+    display: flex;
+    width: 150px;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+    background-color: white;
+    font-size: 25px;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+}
+
 #game {
     display: grid;
     grid-template-columns: auto auto auto auto auto auto auto auto auto;
@@ -54,7 +72,7 @@ body {
     height: 630px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 4em;
+    margin-top: 3em;
     background-color: white;
 }
 

@@ -1,3 +1,4 @@
+var play = true;
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 var numberCount = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 var field;
@@ -36,10 +37,7 @@ function initGame() {
             x++;
         }
     }
-    initCount();
-}
 
-function initCount() {
     for (var i = 0; i < gameString.length; i++) {
         if (gameString[i] != "n" && gameString[i] != "b") {
             numberCount[gameString[i] - 1]++;
