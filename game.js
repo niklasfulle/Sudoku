@@ -109,4 +109,17 @@ function selectField(i, j) {
     }
     count();
     dispalyField();
+    checkForFinish() ? (play = false) : (play = true);
+}
+
+function checkForFinish() {
+    var check = true;
+    for (var i = 0; i < 9; i++) {
+        for (var j = 0; j < 9; j++) {
+            if (field[i][j] == " ") {
+                return false;
+            }
+        }
+    }
+    return check;
 }
