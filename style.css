@@ -92,3 +92,8 @@ body {
     background-color: rgb(255, 121, 121);
     cursor: pointer;
 }
+
+#numberSelect .active1 {
+    background-color: rgb(240, 20, 20);
+    cursor: pointer;
+}

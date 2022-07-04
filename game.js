@@ -1,4 +1,5 @@
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+var numberCount = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 var field;
 var fieldChecks;
 var selected;
@@ -33,6 +34,32 @@ function initGame() {
             y++;
         } else {
             x++;
+        }
+    }
+    initCount();
+}
+
+function initCount() {
+    for (var i = 0; i < gameString.length; i++) {
+        if (gameString[i] != "n" && gameString[i] != "b") {
+            numberCount[gameString[i] - 1]++;
+        }
+    }
+}
+
+function count() {
+    numberCount = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+    for (var i = 0; i < 9; i++) {
+        for (var j = 0; j < 9; j++) {
+            if (field[i][j] != " ") {
+                numberCount[field[i][j] - 1]++;
+                var divNumber = document.getElementById("number" + field[i][j]);
+                if (numberCount[field[i][j] - 1] == 9) {
+                    divNumber.classList.add("active1");
+                } else {
+                    divNumber.classList.remove("active1");
+                }
+            }
         }
     }
 }
@@ -74,10 +101,14 @@ function selectNumber(number) {
 }
 
 function selectField(i, j) {
-    if (selected != undefined) {
-        if (fieldChecks[i][j] != "x") {
-            field[i][j] = selected;
+    if (numberCount[selected - 1] <= 8) {
+        if (selected != undefined) {
+            if (fieldChecks[i][j] != "x") {
+                field[i][j] = selected;
+            }
         }
+        numberCount[selected - 1]++;
     }
+    count();
     dispalyField();
 }
