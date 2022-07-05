@@ -22,11 +22,11 @@ function initGame() {
     var [y, x] = [0, 0];
     for (var i = 0; i < gameString.length; i++) {
         if (gameString[i] != "n" && gameString[i] != "b") {
-            field[y][x] = gameString[i];
+            field[y][x] = Number(gameString[i]);
             fieldChecks[y][x] = "x";
         } else {
             if (gameString[i] == "n") {
-                field[y][x] = " ";
+                field[y][x] = 0;
                 fieldChecks[y][x] = " ";
             }
         }
@@ -68,7 +68,11 @@ function dispalyField() {
     for (var i = 0; i < 9; i++) {
         for (var j = 0; j < 9; j++) {
             var div = document.createElement("div");
-            div.innerHTML = field[i][j];
+            if (field[i][j] == 0) {
+                div.innerHTML = "";
+            } else {
+                div.innerHTML = field[i][j];
+            }
             div.setAttribute("class", "piece");
             var id = "field" + i + "" + j + "";
             div.setAttribute("id", "" + id + "");
@@ -123,6 +127,7 @@ function dispalyNumbers() {
     var divNumbers = document.getElementById("numberSelect");
     for (var i = 0; i < 9; i++) {
         var div = document.createElement("div");
+
         div.innerHTML = numbers[i];
         var number = i + 1;
         div.setAttribute("class", "piece");
@@ -166,10 +171,8 @@ function checkForFinish() {
     }
     if (check) {
         if (checkX() && checkY() && checkBlock()) {
-            console.log("fertig gelöst");
-        } else {
-            console.log("Fehler");
-        }
+            play = false;
+        } else {}
     }
 }
 

@@ -16,7 +16,7 @@ function timer() {
     if (play) {
         if (seconds == 3600) {
             clearInterval(countdownTimer);
-            document.getElementById("timer").innerHTML = "Completed";
+            document.getElementById("timer").innerHTML = "Overtime";
         } else {
             seconds++;
         }
@@ -24,3 +24,7 @@ function timer() {
 }
 
 var countdown = setInterval("timer()", 1000);
+
+function getCountdown() {
+    return countdown;
+}
