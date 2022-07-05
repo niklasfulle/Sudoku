@@ -164,5 +164,49 @@ function checkForFinish() {
             }
         }
     }
-    return check;
+    if (check) {
+        if (checkX() && checkY() && checkBlock()) {
+            console.log("fertig gelöst");
+        } else {
+            console.log("Fehler");
+        }
+    }
+}
+
+function checkX() {
+    for (let x = 0; x < 9; x++) {
+        var sum = field[x][0] + field[x][1] + field[x][2] + field[x][3] + field[x][4] + field[x][5] + field[x][6] + field[x][7] + field[x][8];
+        if (sum != 45) {
+            return false;
+        }
+    }
+    return true;
+}
+
+function checkY() {
+    for (let y = 0; y < 9; y++) {
+        var sum = field[0][y] + field[1][y] + field[2][y] + field[3][y] + field[4][y] + field[5][y] + field[6][y] + field[7][y] + field[8][y];
+        if (sum != 45) {
+            return false;
+        }
+    }
+    return true;
+}
+
+function checkBlock() {
+    var block1 = field[0][0] + field[0][1] + field[0][2] + field[1][0] + field[1][1] + field[1][2] + field[2][0] + field[2][1] + field[2][2];
+    var block2 = field[0][3] + field[0][4] + field[0][5] + field[1][3] + field[1][4] + field[1][5] + field[2][3] + field[2][4] + field[2][5];
+    var block3 = field[0][6] + field[0][7] + field[0][8] + field[1][6] + field[1][7] + field[1][8] + field[2][6] + field[2][7] + field[2][8];
+    var block4 = field[3][0] + field[3][1] + field[3][2] + field[4][0] + field[4][1] + field[4][2] + field[5][0] + field[5][1] + field[5][2];
+    var block5 = field[3][3] + field[3][4] + field[3][5] + field[4][3] + field[4][4] + field[4][5] + field[5][3] + field[5][4] + field[5][5];
+    var block6 = field[3][6] + field[3][7] + field[3][8] + field[4][6] + field[4][7] + field[4][8] + field[5][6] + field[5][7] + field[5][8];
+    var block7 = field[6][0] + field[6][1] + field[6][2] + field[7][0] + field[7][1] + field[7][2] + field[8][0] + field[8][1] + field[8][2];
+    var block8 = field[6][3] + field[6][4] + field[6][5] + field[7][3] + field[7][4] + field[7][5] + field[8][3] + field[8][4] + field[8][5];
+    var block9 = field[6][6] + field[6][7] + field[6][8] + field[7][6] + field[7][7] + field[7][8] + field[8][6] + field[8][7] + field[8][8];
+
+    if (block1 != 45 || block2 != 45 || block3 != 45 || block4 != 45 || block5 != 45 || block6 != 45 || block7 != 45 || block8 != 45 || block9 != 45) {
+        return false;
+    }
+
+    return true;
 }
