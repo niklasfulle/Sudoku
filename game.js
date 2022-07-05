@@ -70,6 +70,49 @@ function dispalyField() {
             var div = document.createElement("div");
             div.innerHTML = field[i][j];
             div.setAttribute("class", "piece");
+            var id = "field" + i + "" + j + "";
+            div.setAttribute("id", "" + id + "");
+            if (i % 3 == 0) {
+                div.setAttribute("class", "piece pieceT");
+                if (j == 2 || j == 5) {
+                    div.setAttribute("class", "piece pieceT pieceR");
+                }
+
+                if (j == 3 || j == 6) {
+                    div.setAttribute("class", "piece pieceT pieceL");
+                }
+            }
+            if (i == 2 || i == 5 || i == 8) {
+                div.setAttribute("class", "piece pieceB");
+                if (j == 2 || j == 5) {
+                    div.setAttribute("class", "piece pieceB pieceR");
+                }
+
+                if (j == 3 || j == 6) {
+                    div.setAttribute("class", "piece pieceB pieceL");
+                }
+            }
+            if (j % 3 == 0) {
+                div.setAttribute("class", "piece pieceL");
+                if (i == 2 || i == 5 || i == 8) {
+                    div.setAttribute("class", "piece pieceL pieceB");
+                }
+
+                if (i % 3 == 0) {
+                    div.setAttribute("class", "piece pieceL pieceT");
+                }
+            }
+
+            if (j == 2 || j == 5 || j == 8) {
+                div.setAttribute("class", "piece pieceR");
+                if (i == 2 || i == 5 || i == 8) {
+                    div.setAttribute("class", "piece pieceR pieceB");
+                }
+
+                if (i % 3 == 0) {
+                    div.setAttribute("class", "piece pieceR pieceT");
+                }
+            }
             div.setAttribute("onclick", "selectField(" + i + "," + j + ")");
             divField.append(div);
         }

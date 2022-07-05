@@ -18,25 +18,10 @@
     --color-font: lightgray;
     --border: black 1px solid;
     --border2: black 2px solid;
+    --border3: black 3px solid;
     --transition: all 400ms ease;
     --transition2: all 800ms ease;
-    --shadow: 0 6px 10px 0px rgb(0 0 0 / 14%), 0 1px 18px 0px rgb(0 0 0 / 12%), 0 3px 5px 0 rgb(0 0 0 / 20%);
-}
-
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #888;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    --shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 
 html {
@@ -64,40 +49,58 @@ body {
     -moz-border-radius: 15px;
     -ms-border-radius: 15px;
     -o-border-radius: 15px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    box-shadow: var(--shadow);
 }
 
 #game {
     display: grid;
     grid-template-columns: auto auto auto auto auto auto auto auto auto;
-    width: 630px;
-    height: 630px;
+    width: 634px;
+    height: 634px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 3em;
     background-color: white;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    box-shadow: var(--shadow);
+    border: var(--border2);
 }
 
 #numberSelect {
     display: flex;
-    width: 630px;
-    height: 70px;
+    width: 634px;
+    height: 74px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 3em;
     background-color: white;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    box-shadow: var(--shadow);
+    border: var(--border2);
 }
 
 .piece {
     width: 70px;
     height: 70px;
-    border: var(--border2);
+    border: var(--border);
     text-align: center;
     font-size: 35px;
     font-weight: bold;
     padding: 10px;
+}
+
+.pieceT {
+    border-top: var(--border2);
+}
+
+.pieceB {
+    border-bottom: var(--border2);
+}
+
+.pieceR {
+    border-right: var(--border2);
+}
+
+.pieceL {
+    border-left: var(--border2);
 }
 
 #game .piece:hover {
