@@ -122,3 +122,41 @@ body {
     background-color: rgb(240, 20, 20);
     cursor: pointer;
 }
+
+#background {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    background-color: white;
+    opacity: 0.2;
+}
+
+.einblendung {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    border: var(--border2);
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+
+#start {
+    width: 400px;
+    height: 200px;
+}
+
+#finished {
+    width: 400px;
+    height: 200px;
+}

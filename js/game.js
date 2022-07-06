@@ -4,7 +4,7 @@ var numberCount = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 var field;
 var fieldChecks;
 var selected;
-const gameString = "9n7nnnnnnbnnnn4n8n2bnnnnnnn9nbnn56nnn7nb4n683nn5nb7nn9nn4n1b12n385n46b5nnn9nn83b3nnn71n2n";
+const gameString = ".52..68.......7.2.......6....48..9..2..41......1.....8..61..38.....9...63..6..1.9";
 
 function init() {
     field = new Array(9);
@@ -21,25 +21,23 @@ function init() {
 function initGame() {
     var [y, x] = [0, 0];
     for (var i = 0; i < gameString.length; i++) {
-        if (gameString[i] != "n" && gameString[i] != "b") {
+        if (gameString[i] != ".") {
             field[y][x] = Number(gameString[i]);
             fieldChecks[y][x] = "x";
         } else {
-            if (gameString[i] == "n") {
-                field[y][x] = 0;
-                fieldChecks[y][x] = " ";
-            }
+            field[y][x] = 0;
+            fieldChecks[y][x] = " ";
         }
-        if (gameString[i] == "b") {
-            x = 0;
-            y++;
-        } else {
+        if (y == 8) {
             x++;
+            y = 0;
+        } else {
+            y++;
         }
     }
 
     for (var i = 0; i < gameString.length; i++) {
-        if (gameString[i] != "n" && gameString[i] != "b") {
+        if (gameString[i] != ".") {
             numberCount[gameString[i] - 1]++;
         }
     }
@@ -50,9 +48,9 @@ function count() {
     for (var i = 0; i < 9; i++) {
         for (var j = 0; j < 9; j++) {
             if (field[i][j] != " ") {
-                numberCount[field[i][j] - 1]++;
+                numberCount[field[j][i] - 1]++;
                 var divNumber = document.getElementById("number" + field[i][j]);
-                if (numberCount[field[i][j] - 1] == 9) {
+                if (numberCount[field[j][i] - 1] == 9) {
                     divNumber.classList.add("active1");
                 } else {
                     divNumber.classList.remove("active1");
@@ -68,10 +66,10 @@ function dispalyField() {
     for (var i = 0; i < 9; i++) {
         for (var j = 0; j < 9; j++) {
             var div = document.createElement("div");
-            if (field[i][j] == 0) {
+            if (field[j][i] == 0) {
                 div.innerHTML = "";
             } else {
-                div.innerHTML = field[i][j];
+                div.innerHTML = field[j][i];
             }
             div.setAttribute("class", "piece");
             var id = "field" + i + "" + j + "";
