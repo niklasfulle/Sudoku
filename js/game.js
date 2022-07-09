@@ -4,7 +4,7 @@ var numberCount = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 var field;
 var fieldChecks;
 var selected;
-const gameString = ".52..68.......7.2.......6....48..9..2..41......1.....8..61..38.....9...63..6..1.9";
+var gameString = "";
 
 function init() {
     field = new Array(9);
@@ -14,8 +14,26 @@ function init() {
         fieldChecks[i] = new Array(9);
     }
 
+    selectGameString();
     initGame();
     dispalyField();
+}
+
+function selectGameString() {
+    var random = Math.floor(Math.random() * 100);
+    if (document.getElementById("simple").checked) {
+        gameString = simple[random];
+        console.log("simple");
+    } else if (document.getElementById("middle").checked) {
+        gameString = middle[random];
+        console.log("middle");
+    } else if (document.getElementById("hard").checked) {
+        gameString = hard[random];
+        console.log("hard");
+    } else if (document.getElementById("experte").checked) {
+        gameString = experte[random];
+        console.log("experte");
+    }
 }
 
 function initGame() {
