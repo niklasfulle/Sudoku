@@ -1,4 +1,4 @@
-var play = true;
+var play = false;
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 var numberCount = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 var field;
@@ -19,20 +19,20 @@ function init() {
 }
 
 function initGame() {
-    var [y, x] = [0, 0];
+    var [x, y] = [0, 0];
     for (var i = 0; i < gameString.length; i++) {
         if (gameString[i] != ".") {
-            field[y][x] = Number(gameString[i]);
-            fieldChecks[y][x] = "x";
+            field[x][y] = Number(gameString[i]);
+            fieldChecks[x][y] = "x";
         } else {
-            field[y][x] = 0;
-            fieldChecks[y][x] = " ";
+            field[x][y] = 0;
+            fieldChecks[x][y] = " ";
         }
-        if (y == 8) {
-            x++;
-            y = 0;
-        } else {
+        if (x == 8) {
             y++;
+            x = 0;
+        } else {
+            x++;
         }
     }
 
@@ -43,14 +43,21 @@ function initGame() {
     }
 }
 
+function start() {
+    play = true;
+    init();
+    document.getElementById("background").style.display = "none";
+    document.getElementById("start").style.display = "none";
+}
+
 function count() {
     numberCount = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-    for (var i = 0; i < 9; i++) {
-        for (var j = 0; j < 9; j++) {
-            if (field[i][j] != " ") {
-                numberCount[field[j][i] - 1]++;
-                var divNumber = document.getElementById("number" + field[i][j]);
-                if (numberCount[field[j][i] - 1] == 9) {
+    for (var x = 0; x < 9; x++) {
+        for (var y = 0; y < 9; y++) {
+            if (field[x][y] != " ") {
+                numberCount[field[x][y] - 1]++;
+                var divNumber = document.getElementById("number" + field[x][y]);
+                if (numberCount[field[x][y] - 1] == 9) {
                     divNumber.classList.add("active1");
                 } else {
                     divNumber.classList.remove("active1");
@@ -63,59 +70,59 @@ function count() {
 function dispalyField() {
     var divField = document.getElementById("game");
     divField.innerHTML = "";
-    for (var i = 0; i < 9; i++) {
-        for (var j = 0; j < 9; j++) {
+    for (var x = 0; x < 9; x++) {
+        for (var y = 0; y < 9; y++) {
             var div = document.createElement("div");
-            if (field[j][i] == 0) {
+            if (field[y][x] == 0) {
                 div.innerHTML = "";
             } else {
-                div.innerHTML = field[j][i];
+                div.innerHTML = field[y][x];
             }
             div.setAttribute("class", "piece");
-            var id = "field" + i + "" + j + "";
+            var id = "field" + x + "" + y + "";
             div.setAttribute("id", "" + id + "");
-            if (i % 3 == 0) {
+            if (x % 3 == 0) {
                 div.setAttribute("class", "piece pieceT");
-                if (j == 2 || j == 5) {
+                if (y == 2 || y == 5) {
                     div.setAttribute("class", "piece pieceT pieceR");
                 }
 
-                if (j == 3 || j == 6) {
+                if (y == 3 || y == 6) {
                     div.setAttribute("class", "piece pieceT pieceL");
                 }
             }
-            if (i == 2 || i == 5 || i == 8) {
+            if (x == 2 || x == 5 || x == 8) {
                 div.setAttribute("class", "piece pieceB");
-                if (j == 2 || j == 5) {
+                if (y == 2 || y == 5) {
                     div.setAttribute("class", "piece pieceB pieceR");
                 }
 
-                if (j == 3 || j == 6) {
+                if (y == 3 || y == 6) {
                     div.setAttribute("class", "piece pieceB pieceL");
                 }
             }
-            if (j % 3 == 0) {
+            if (y % 3 == 0) {
                 div.setAttribute("class", "piece pieceL");
-                if (i == 2 || i == 5 || i == 8) {
+                if (x == 2 || x == 5 || x == 8) {
                     div.setAttribute("class", "piece pieceL pieceB");
                 }
 
-                if (i % 3 == 0) {
+                if (x % 3 == 0) {
                     div.setAttribute("class", "piece pieceL pieceT");
                 }
             }
 
-            if (j == 2 || j == 5 || j == 8) {
+            if (y == 2 || y == 5 || y == 8) {
                 div.setAttribute("class", "piece pieceR");
-                if (i == 2 || i == 5 || i == 8) {
+                if (x == 2 || x == 5 || x == 8) {
                     div.setAttribute("class", "piece pieceR pieceB");
                 }
 
-                if (i % 3 == 0) {
+                if (x % 3 == 0) {
                     div.setAttribute("class", "piece pieceR pieceT");
                 }
             }
-            div.setAttribute("onclick", "selectField(" + i + "," + j + ")");
+            div.setAttribute("onclick", "selectField(" + x + "," + y + ")");
             divField.append(div);
         }
     }
@@ -125,8 +132,8 @@ function dispalyNumbers() {
     var divNumbers = document.getElementById("numberSelect");
     for (var i = 0; i < 9; i++) {
         var div = document.createElement("div");
+        numbers[i] != 0 ? (div.innerHTML = numbers[i]) : (div.innerHTML = "");
 
-        div.innerHTML = numbers[i];
         var number = i + 1;
         div.setAttribute("class", "piece");
         div.setAttribute("id", "number" + number);
@@ -147,8 +154,8 @@ function selectNumber(number) {
 function selectField(i, j) {
     if (numberCount[selected - 1] <= 8) {
         if (selected != undefined) {
-            if (fieldChecks[i][j] != "x") {
-                field[i][j] = selected;
+            if (fieldChecks[j][i] != "x") {
+                field[j][i] = selected;
             }
         }
         numberCount[selected - 1]++;
@@ -160,9 +167,9 @@ function selectField(i, j) {
 
 function checkForFinish() {
     var check = true;
-    for (var i = 0; i < 9; i++) {
-        for (var j = 0; j < 9; j++) {
-            if (field[i][j] == " ") {
+    for (var x = 0; x < 9; x++) {
+        for (var y = 0; y < 9; y++) {
+            if (field[x][y] == " ") {
                 return false;
             }
         }

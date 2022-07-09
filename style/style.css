@@ -138,7 +138,7 @@ body {
     position: absolute;
     left: 0;
     right: 0;
-    top: 300px;
+    top: 220px;
     margin-left: auto;
     margin-right: auto;
     background-color: white;
@@ -149,14 +149,39 @@ body {
     -ms-border-radius: 15px;
     -o-border-radius: 15px;
     box-shadow: var(--shadow);
+    text-align: center;
 }
 
 #start {
     width: 400px;
-    height: 200px;
+    height: 400px;
+}
+
+.einblendung h1 {
+    margin: 1em;
+}
+
+.einblendung button {
+    background-color: white;
+    color: black;
+    border: 2px solid #008cba;
+    padding: 8px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 12px;
+    width: 150px;
+}
+
+.einblendung button:hover {
+    background-color: #008cba;
+    color: white;
 }
 
 #finished {
     width: 400px;
-    height: 200px;
+    height: 400px;
 }
