@@ -185,3 +185,70 @@ body {
     width: 400px;
     height: 400px;
 }
+
+#schwierigkeit {
+    margin: 4em 0em 2em 0em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.container {
+    margin: 0em auto 1em auto;
+    position: relative;
+    width: 5.5em;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    transition-duration: 0.4s;
+}
+
+.container p {
+    padding-left: 1.2em;
+}
+
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+.container:hover input~.checkmark {
+    background-color: #008cba;
+}
+
+.container input:checked~.checkmark {
+    background-color: #008cba;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container input:checked~.checkmark:after {
+    display: block;
+}
+
+.container .checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
