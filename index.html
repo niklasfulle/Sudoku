@@ -1,48 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="style/style.css" media="screen" />
     <script type="text/javascript" src="js/game.js"></script>
     <script type="text/javascript" src="js/timer.js"></script>
-    <script type="text/javascript" src="js/sudokus.js"></script>
+    <script type="text/javascript" src="js/generator.js"></script>
     <title>Sudoku</title>
-</head>
+  </head>
 
-<body onload="dispalyNumbers()">
+  <body onload="dispalyNumbers()">
     <div>
-        <div id="timer">00:00:00</div>
-        <div id="game"></div>
-        <div id="numberSelect"></div>
-        <div id="background"></div>
-        <div id="start" class="einblendung">
-            <h1>Sudoku</h1>
-            <div id="schwierigkeit">
-                <label class="container"><p>Leicht</p>
-            <input type="radio" checked="checked" name="radio" id="simple"/>
-            <span class="checkmark"></span>
+      <div id="timer">00:00:00</div>
+      <div id="game"></div>
+      <div id="numberSelect"></div>
+      <div id="background"></div>
+      <div id="start" class="einblendung">
+        <h1>Sudoku</h1>
+        <div id="schwierigkeit">
+          <label class="rad-label">
+            <input type="radio" class="rad-input" checked="checked" name="rad" id="easy" />
+            <div class="rad-design"></div>
+            <div class="rad-text">Leicht</div>
           </label>
-                <label class="container"><p>Mittel</p>
-            <input type="radio" name="radio" id="middle"/>
-            <span class="checkmark"></span>
+          <label class="rad-label">
+            <input type="radio" class="rad-input" name="rad" id="medium" />
+            <div class="rad-design"></div>
+            <div class="rad-text">Mittel</div>
           </label>
-                <label class="container"><p>Schwer</p>
-            <input type="radio" name="radio" id="hard"/>
-            <span class="checkmark"></span>
+          <label class="rad-label">
+            <input type="radio" class="rad-input" name="rad" id="hard" />
+            <div class="rad-design"></div>
+            <div class="rad-text">Schwer</div>
           </label>
-                </label>
-                <label class="container"><p>Experte</p>
-            <input type="radio" name="radio" id="experte"/>
-            <span class="checkmark"></span>
+          <label class="rad-label">
+            <input type="radio" class="rad-input" name="rad" id="veryhard" />
+            <div class="rad-design"></div>
+            <div class="rad-text">Sehr Schwer</div>
           </label>
-            </div>
-            <button onclick="start()">Start</button>
+          <label class="rad-label">
+            <input type="radio" class="rad-input" name="rad" id="insane" />
+            <div class="rad-design"></div>
+            <div class="rad-text">Wahnsinnig</div>
+          </label>
+          <label class="rad-label">
+            <input type="radio" class="rad-input" name="rad" id="inhuman" />
+            <div class="rad-design"></div>
+            <div class="rad-text">Unmenschlich</div>
+          </label>
         </div>
-        <!--<div id="finished" class="einblendung"></div>-->
+        <button onclick="start()">Start</button>
+      </div>
+      <div id="finished" class="einblendung">
+        <h1>Sudoku</h1>
+        <p>Leicht</p>
+        <p>00:02:10</p>
+        <button onclick="restart()">Neu Starten</button>
+      </div>
     </div>
-</body>
-
+  </body>
 </html>
