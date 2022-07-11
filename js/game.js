@@ -1,5 +1,5 @@
 var play = false;
-const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 var numberCount = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 var field;
 var fieldChecks;
@@ -148,11 +148,11 @@ function dispalyField() {
 
 function dispalyNumbers() {
   var divNumbers = document.getElementById("numberSelect");
-  for (var i = 0; i < 9; i++) {
+  for (var i = 0; i < 10; i++) {
     var div = document.createElement("div");
     numbers[i] != 0 ? (div.innerHTML = numbers[i]) : (div.innerHTML = "");
-
-    var number = i + 1;
+    var number;
+    numbers[i] != 0 ? (number = i + 1) : (number = 0);
     div.setAttribute("class", "piece");
     div.setAttribute("id", "number" + number);
     div.setAttribute("onclick", "selectNumber(" + number + ")");
@@ -163,14 +163,14 @@ function dispalyNumbers() {
 function selectNumber(number) {
   selected = number;
   var divNumber = document.getElementById("number" + number);
-  for (var i = 1; i <= 9; i++) {
+  for (var i = 0; i <= 9; i++) {
     document.getElementById("number" + i).classList.remove("active");
   }
   divNumber.classList.add("active");
 }
 
 function selectField(i, j) {
-  if (numberCount[selected - 1] <= 8) {
+  if (numberCount[selected - 1] <= 8 || selected == 0) {
     if (selected != undefined) {
       if (fieldChecks[j][i] != "x") {
         field[j][i] = selected;
