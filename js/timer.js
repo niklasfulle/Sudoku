@@ -13,7 +13,8 @@ function timer() {
         function pad(n) {
             return n < 10 ? "0" + n : n;
         }
-        document.getElementById("timer").innerHTML = pad(hours) + ":" + pad(minutes) + ":" + pad(remainingSeconds);
+        document.getElementById("timer").innerHTML =
+            pad(hours) + ":" + pad(minutes) + ":" + pad(remainingSeconds);
 
         if (seconds == 3600) {
             clearInterval(countdownTimer);
